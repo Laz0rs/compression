@@ -2,18 +2,20 @@
 
 namespace Laz0r\Compression\Definition;
 
-interface FormatInterface {
+use JsonSerializable;
+
+interface FormatInterface extends JsonSerializable {
 
 	public const FORMAT_BROTLI = "br";
 	public const FORMAT_DEFLATE = "deflate";
 	public const FORMAT_GZIP = "gzip";
 
 	/**
-	 * @param static $Other
+	 * @param \JsonSerializable $Other
 	 *
 	 * @return bool
 	 */
-	public function compare(object $Other): bool;
+	public function compare(JsonSerializable $Other): bool;
 
 	public function getFormat(): string;
 

@@ -12,12 +12,6 @@ class Purpose extends Format implements PurposeInterface {
 		$this->purpose = $purpose;
 	}
 
-	public function compare(object $Other): bool {
-		return parent::compare($Other) && (
-			$this->getPurpose() === $Other->getPurpose()
-		);
-	}
-
 	public function getPurpose(): int {
 		return $this->purpose;
 	}

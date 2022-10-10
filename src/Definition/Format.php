@@ -2,6 +2,7 @@
 
 namespace Laz0r\Compression\Definition;
 
+use JsonSerializable;
 use Laz0r\Util\AbstractConstructOnce;
 
 class Format extends AbstractConstructOnce implements FormatInterface {
@@ -14,12 +15,16 @@ class Format extends AbstractConstructOnce implements FormatInterface {
 		$this->format = $format;
 	}
 
-	public function compare(object $Other): bool {
-		return $this->getFormat() === $Other->getFormat();
+	public function compare(JsonSerializable $Other): bool {
+		return $this->jsonSerialize() === $Other->jsonSerialize();
 	}
 
 	public function getFormat(): string {
 		return $this->format;
+	}
+
+	public function jsonSerialize() {
+		return get_object_vars($this);
 	}
 
 }
