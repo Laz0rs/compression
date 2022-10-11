@@ -21,7 +21,7 @@ class PluginRegistryService extends PluginSet implements PluginRegistryInterface
 	public function __construct() {
 		parent::__construct();
 
-		$this->loadExtensionPlugins(static::$pluginsByExtension);
+		$this->loadPlugins(static::$pluginsByExtension);
 	}
 
 	public function getDecodingPluginsByFormat(): array {
@@ -117,29 +117,15 @@ class PluginRegistryService extends PluginSet implements PluginRegistryInterface
 
 	/**
 	 * @param string[] $plugins
-	 * @psalm-param class-string[] $plugins
-	 *
-	 * @return void
-	 */
-	protected function loadArbitraryPlugins(array $plugins): void {
-		iterator_apply(
-			new ArrayIterator($plugins),
-			[$this, "addPlugin"]
-		);
-	}
-
-	/**
-	 * @param string[] $plugins
 	 * @psalm-param array<string, class-string> $plugins
 	 *
 	 * @return void
 	 */
-	protected function loadExtensionPlugins(array $plugins): void {
-		$this->loadArbitraryPlugins(array_filter(
-			$plugins,
-			"extension_loaded",
-			ARRAY_FILTER_USE_KEY
-		));
+	protected function loadPlugins(array $plugins): void {
+		array_map(
+			[$this, "addPlugin"],
+			array_filter($plugins, "extension_loaded", ARRAY_FILTER_USE_KEY),
+		);
 	}
 
 }
