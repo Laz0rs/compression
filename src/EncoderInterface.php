@@ -2,11 +2,11 @@
 
 namespace Laz0r\Compression;
 
-use Laz0r\Compression\Definition\PurposeInterface;
-
-interface EncoderInterface extends DeviceInterface, PurposeInterface {
+interface EncoderInterface extends DeviceInterface {
 
 	public function encode(string $data): string;
+
+	public function getPurpose(): int;
 
 }
 

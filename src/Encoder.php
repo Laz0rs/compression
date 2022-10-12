@@ -2,10 +2,18 @@
 
 namespace Laz0r\Compression;
 
-use Laz0r\Compression\Definition\{PurposeInterface,Purpose};
+use Laz0r\Compression\Definition\{
+	FormatTrait,
+	PurposeInterface,
+	PurposeTrait
+};
 use Laz0r\Compression\Exception\EncoderErrorException;
+use Laz0r\Util\AbstractConstructOnce;
 
-class Encoder extends Purpose implements EncoderInterface {
+class Encoder extends AbstractConstructOnce implements EncoderInterface {
+
+	use FormatTrait;
+	use PurposeTrait;
 
 	/** @var callable */
 	private $function;
@@ -14,9 +22,11 @@ class Encoder extends Purpose implements EncoderInterface {
 		PurposeInterface $Purpose,
 		callable $function
 	) {
-		parent::__construct($Purpose->getFormat(), $Purpose->getPurpose());
+		parent::__construct();
 
+		$this->format = $Purpose->getFormat();
 		$this->function = $function;
+		$this->purpose = $Purpose->getPurpose();
 	}
 
 	public function encode(string $data): string {

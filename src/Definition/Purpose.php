@@ -2,18 +2,19 @@
 
 namespace Laz0r\Compression\Definition;
 
-class Purpose extends Format implements PurposeInterface {
+use Laz0r\Util\AbstractConstructOnce;
 
-	private int $purpose;
+class Purpose extends AbstractConstructOnce implements PurposeInterface {
+
+	use EqualTrait;
+	use FormatTrait;
+	use PurposeTrait;
 
 	public function __construct(string $format, int $purpose) {
-		parent::__construct($format);
+		parent::__construct();
 
+		$this->format = $format;
 		$this->purpose = $purpose;
-	}
-
-	public function getPurpose(): int {
-		return $this->purpose;
 	}
 
 }

@@ -2,9 +2,10 @@
 
 namespace Laz0r\Compression;
 
-use Laz0r\Compression\Definition\FormatInterface;
+interface DeviceInterface {
 
-interface DeviceInterface extends FormatInterface {
+	public function getFormat(): string;
+
 }
 
 /* vi:set ts=4 sw=4 noet: */

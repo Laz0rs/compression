@@ -11,11 +11,11 @@ interface FormatInterface extends JsonSerializable {
 	public const FORMAT_GZIP = "gzip";
 
 	/**
-	 * @param \JsonSerializable $Other
+	 * @param object|null $Other
 	 *
 	 * @return bool
 	 */
-	public function compare(JsonSerializable $Other): bool;
+	public function equals(?object $Other): bool;
 
 	public function getFormat(): string;
 

@@ -2,17 +2,21 @@
 
 namespace Laz0r\Compression;
 
-use Laz0r\Compression\Definition\{Format,FormatInterface};
+use Laz0r\Compression\Definition\{FormatInterface, FormatTrait};
 use Laz0r\Compression\Exception\DecoderErrorException;
+use Laz0r\Util\AbstractConstructOnce;
 
-class Decoder extends Format implements DecoderInterface {
+class Decoder extends AbstractConstructOnce implements DecoderInterface {
+
+	use FormatTrait;
 
 	/** @var callable */
 	private $function;
 
 	public function __construct(FormatInterface $Format, callable $function) {
-		parent::__construct($Format->getFormat());
+		parent::__construct();
 
+		$this->format = $Format->getFormat();
 		$this->function = $function;
 	}
 
