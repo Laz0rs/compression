@@ -24,9 +24,10 @@ class Decoder extends AbstractConstructOnce implements DecoderInterface {
 		$ret = call_user_func($this->function, $data);
 
 		if (!is_string($ret)) {
-			throw new DecoderErrorException(
-				"Error occurred in \"{$this->getFormat()}\" decoder"
-			);
+			throw new DecoderErrorException(sprintf(
+				"Error occurred in \"%s\" decoder",
+				$this->getFormat(),
+			));
 		}
 
 		return $ret;

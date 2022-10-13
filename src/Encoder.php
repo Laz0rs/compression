@@ -33,9 +33,10 @@ class Encoder extends AbstractConstructOnce implements EncoderInterface {
 		$ret = call_user_func($this->function, $data);
 
 		if (!is_string($ret)) {
-			throw new EncoderErrorException(
-				"Error occurred in \"{$this->getFormat()}\" encoder"
-			);
+			throw new EncoderErrorException(sprintf(
+				"Error occurred in \"%s\" encoder",
+				$this->getFormat(),
+			));
 		}
 
 		return $ret;
