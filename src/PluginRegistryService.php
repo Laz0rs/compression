@@ -77,7 +77,6 @@ class PluginRegistryService extends PluginSet implements PluginRegistryInterface
 		 * @var string[] $supports
 		 */
 		foreach ($formats as $plugin => $supports) {
-			/** @var string $format */
 			foreach ($supports as $format) {
 				assert(class_exists($plugin));
 

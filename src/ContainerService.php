@@ -101,7 +101,6 @@ class ContainerService extends AbstractConstructOnce implements ContainerInterfa
 	}
 
 	protected function getExistingDecoder(string $format): ?DecoderInterface {
-		/** @var \Laz0r\Compression\DecoderInterface|null $Ret */
 		$Ret = array_key_exists($format, $this->decoders)
 			? $this->decoders[$format]
 			: null;

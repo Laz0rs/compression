@@ -36,7 +36,7 @@ class DeviceFactoryContainerService extends AbstractConstructOnce implements Dev
 	public function getDecoderFactory(
 		FormatInterface $Format
 	): DecoderFactoryInterface {
-		/** @var ?\Laz0r\Compression\DecoderFactoryInterface $Ret */
+		/** @var \Laz0r\Compression\DecoderFactoryInterface|null $Ret */
 		$Ret = $this->getFactory(self::DECODER, $Format->getFormat());
 
 		if (is_null($Ret)) {
@@ -49,7 +49,7 @@ class DeviceFactoryContainerService extends AbstractConstructOnce implements Dev
 	public function getEncoderFactory(
 		PurposeInterface $Purpose
 	): EncoderFactoryInterface {
-		/** @var ?\Laz0r\Compression\EncoderFactoryInterface $Ret */
+		/** @var \Laz0r\Compression\EncoderFactoryInterface|null $Ret */
 		$Ret = $this->getFactory(self::ENCODER, $Purpose->getFormat());
 
 		if (is_null($Ret)) {
