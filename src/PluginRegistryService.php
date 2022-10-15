@@ -13,7 +13,7 @@ class PluginRegistryService extends PluginSet implements PluginRegistryInterface
 	 */
 	protected static $pluginsByExtension = [
 		"brotli" => Brotli::class,
-		"identity" => Identity::class,
+		"standard" => Identity::class,
 		"zlib" => Zlib::class,
 		"zopfli" => Zopfli::class,
 	];
